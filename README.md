@@ -1,66 +1,55 @@
-# blackjack
+# Blackjack
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Atividade de avaliação do projeto Hack the Favela no módulo de Java realizado pelo <a href="https://altbank.ai/" target="_blank">alt.bank</a>.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Este projeto consiste na recriação do famoso jogo BlackJack ou 21 em português.
 
-## Running the application in dev mode
+## Objetivo do jogo
 
-You can run your application in dev mode that enables live coding using:
+O objetivo do jogo é chegar mais próximo ou igual ao valor 21 com base na soma das cartas do jogador.
 
-```shell script
-./mvnw quarkus:dev
-```
+A somatória das cartas será feita conforme tabela abaixo:
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+| Carta | Valor no jogo|
+|--|--|
+| 2 a 10 | Vale o valor impresso na carta |
+| Valete (J), Dama (Q), Rei (K) |Todas valem 10|
+|Ás (A)|Pode valer 1 ou 11, dependendo do que for melhor para sua mão|
 
-## Packaging and running the application
+## Participantes do jogo
 
-The application can be packaged using:
+O jogo é composto de um dealer (jogador representando a casa) contra até cinco jogadores.
 
-```shell script
-./mvnw package
-```
+## Rodadas
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+- O jogo inicia com os jogadores fazendo suas apostas.
+- O dealer entrega duas cartas abertas (viradas para cima) para cada jogador e duas cartas para ele mesmo, 
+porém uma carta dele é fechada (virada para baixo). 
+- Se as duas primeiras cartas do jogador somarem 21 pontos, exemplo: Ás e uma carta de valor 10 (10, J, Q ou K), 
+o jogador tem um Blackjack e ganha automaticamente (1.5x o valor apostado), 
+a menos que o dealer também tenha um.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+## Opções de Jogo
 
-If you want to build an _über-jar_, execute the following command:
+Quando for a vez do jogador, ele deve decidir o que fazer com base na sua soma atual:
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+- Pedir (Hit): O jogador pede mais uma carta para aumentar seu total. O jogador pode pedir quantas quiser, mas se passar 
+de 21, o jogador "estoura" (bust) e perde a aposta na hora.
+- Parar (Stand): O jogador encerra sua jogada com o que tem e espera o resultado do dealer.
+- Dobrar (Double Down): O jogador dobra sua aposta inicial e recebe apenas mais uma carta. É arriscado, mas lucrativo se 
+o jogador tiver uma mão forte (como um 11).
+- Dividir (Split): Se o jogador receber duas cartas iguais (ex: dois 8s), pode separá-las em duas mãos diferentes, 
+fazendo uma nova aposta de mesmo valor na segunda mão.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+## Regras do dealer
 
-## Creating a native executable
+O dealer não decide como jogar, ele segue regras rígidas da casa:
 
-You can create a native executable using:
+- Ele deve pedir cartas até somar pelo menos 17.
+- Se ele somar 17 ou mais, ele deve parar.
 
-```shell script
-./mvnw package -Dnative
-```
+## O jogador ganha se
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/blackjack-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+- Sua soma final for maior que a do dealer (sem passar de 21).
+- O dealer estourar (passar de 21) e o jogador não.
+- Em caso de empate o dealer é o vencedor.
