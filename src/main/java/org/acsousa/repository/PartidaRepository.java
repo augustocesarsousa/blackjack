@@ -3,6 +3,8 @@ package org.acsousa.repository;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.acsousa.domain.entities.Partida;
 
+import java.util.Optional;
+
 @ApplicationScoped
 public class PartidaRepository {
 
@@ -12,8 +14,8 @@ public class PartidaRepository {
         this.partidaAtual = partida;
     }
 
-    public Partida obterPartida() {
-        return this.partidaAtual;
+    public Optional<Partida> obterPartida() {
+        return Optional.ofNullable(this.partidaAtual);
     }
 
     public void resetar() {

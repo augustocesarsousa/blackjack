@@ -8,7 +8,7 @@ public class Baralho {
 
     private final List<Carta> cartas = new ArrayList<>();
 
-    Baralho () {
+    public Baralho () {
         this.criarBaralho();
         this.embaralhar();
     }
