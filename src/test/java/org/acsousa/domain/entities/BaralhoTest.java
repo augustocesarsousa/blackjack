@@ -1,10 +1,12 @@
 package org.acsousa.domain.entities;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.acsousa.domain.enums.Naipe;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@QuarkusTest
 class BaralhoTest {
 
     @Test
