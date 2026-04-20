@@ -1,11 +1,14 @@
 package org.acsousa.domain.entities;
 
+import org.acsousa.domain.enums.ResultadoPartida;
+
 public class Partida {
 
     private Jogador jogador;
     private Dealer dealer;
     private Baralho baralho;
     private boolean emAndamento;
+    private ResultadoPartida resultado;
 
     public Jogador getJogador() {
         return jogador;
@@ -37,5 +40,13 @@ public class Partida {
 
     public void setEmAndamento(boolean emAndamento) {
         this.emAndamento = emAndamento;
+    }
+
+    public ResultadoPartida getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(ResultadoPartida resultado) {
+        this.resultado = resultado;
     }
 }
