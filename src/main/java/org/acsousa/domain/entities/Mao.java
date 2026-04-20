@@ -28,23 +28,18 @@ public class Mao {
 
     public void calcularPontos() {
         this.pontos = 0;
+        int ases = 0;
 
         for (Carta carta : this.cartas) {
-            this.somarValorDaCarta(carta);
-        }
-    }
-
-    private void somarValorDaCarta(Carta carta) {
-        if (carta != null) {
+            this.pontos += carta.getValor();
             if (carta.getNome().equals("As")) {
-                if (this.pontos <= 11) {
-                    this.pontos += 10;
-                } else {
-                    this.pontos += carta.getValor();
-                }
-            } else {
-                this.pontos += carta.getValor();
+                ases++;
             }
+        }
+
+        while (ases > 0 && this.pontos <= 11) {
+            this.pontos += 10;
+            ases--;
         }
     }
 }

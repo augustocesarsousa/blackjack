@@ -8,32 +8,16 @@ import java.util.List;
 public class Jogador {
 
     private final String nome;
-    private Integer fichas;
-    private final Integer aposta;
     private final List<Mao> maos = new ArrayList<>();
     private final List<AcaoRodada> acoesDiponiveis = new ArrayList<>();
 
-    public Jogador(String nome, Integer aposta) {
-        this.nome = nome;
-        this.fichas = 1000;
-        if(aposta > this.fichas) {
-            this.aposta = this.fichas;
-        } else {
-            this.aposta = aposta;
-        }
+    public Jogador() {
+        this.nome = "James Bond";
         maos.add(new Mao());
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public Integer getAposta() {
-        return aposta;
-    }
-
-    public Integer getFichas() {
-        return fichas;
     }
 
     public List<AcaoRodada> getAcoesDiponiveis() {
@@ -48,11 +32,6 @@ public class Jogador {
         if (this.maos.get(numeroDaMao) != null) {
             this.maos.get(numeroDaMao).adicionarCarta(carta);
         }
-    }
-
-    public void removerFichas(Integer quantidade) {
-        if (this.fichas < quantidade) throw new RuntimeException("Jogador não possui fichas suficiente");
-        this.fichas -= quantidade;
     }
 
     public void dividirMao() {
