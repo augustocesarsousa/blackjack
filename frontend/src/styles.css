@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+@theme {
+  --casino-green: #1a4a32;
+  --casino-dark: #0d2b1d;
+  --gold-accent: #d4af37;
+}
