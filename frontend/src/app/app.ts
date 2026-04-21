@@ -1,14 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MesaLayout } from './layout/mesa/mesa.layout';
+import { BlackjackComponent } from './features/blackjack/blackjack.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MesaLayout],
-  template: `
-    <app-mesa />
-    <router-outlet />
-  `,
+  imports: [BlackjackComponent],
+  template: ` <app-blackjack /> `,
 })
 export class App {
   protected readonly title = signal('blackjack');

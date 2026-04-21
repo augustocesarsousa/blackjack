@@ -10,10 +10,8 @@ import { CartaShared } from '../../shared/components/carta/carta.shared';
   styleUrl: './mesa.layout.css',
 })
 export class MesaLayout {
-  // Recebe o estado da partida da Feature pai
   partida = input<Partida | null>(null);
 
-  // Eventos de saída para a Feature tratar
   pedir = output<void>();
   parar = output<void>();
   novoJogo = output<void>();
