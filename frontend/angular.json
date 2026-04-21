@@ -8,7 +8,20 @@
   "projects": {
     "blackjack": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "type": "component",
+          "skipTests": false,
+          "displayBlock": true
+        },
+        "@schematics/angular:service": {
+          "type": "service"
+        },
+        "@schematics/angular:directive": {
+          "type": "directive"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
