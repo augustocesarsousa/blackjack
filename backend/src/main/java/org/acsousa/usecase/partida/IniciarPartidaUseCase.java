@@ -2,6 +2,7 @@ package org.acsousa.usecase.partida;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.acsousa.domain.entities.*;
+import org.acsousa.domain.enums.ResultadoPartida;
 
 @ApplicationScoped
 public class IniciarPartidaUseCase {
@@ -27,6 +28,30 @@ public class IniciarPartidaUseCase {
         partida.setBaralho(baralho);
         partida.setEmAndamento(true);
 
+        verificaBlackjackInicial(partida);
+
         return partida;
+    }
+
+    private void verificaBlackjackInicial(Partida partida) {
+        int pontosJogador = partida.getJogador().getMaos().get(0).getPontos();
+
+        if (pontosJogador == 21) {
+            partida.setEmAndamento(false);
+
+            int pontosDealer = partida.getDealer().getMao().getPontos();
+
+            if (pontosDealer == 21) {
+                partida.setResultado(ResultadoPartida.EMPATE);
+            } else {
+                partida.setResultado(ResultadoPartida.BLACKJACK);
+            }
+
+            partida.getJogador().getAcoesDisponiveis().clear();
+
+            partida.getDealer().getMao().getCartas().forEach(c -> c.virarCarta(true));
+        } else {
+            partida.getJogador().atualizarAcoesDisponiveis(true);
+        }
     }
 }

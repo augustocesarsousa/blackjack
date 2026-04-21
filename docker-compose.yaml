@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/src/main/docker/Dockerfile.jvm
+    container_name: blackjack-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - QUARKUS_HTTP_CORS_ORIGINS=http://localhost:4200
+      - QUARKUS_HTTP_HOST=0.0.0.0
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: blackjack-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend

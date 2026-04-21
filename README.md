@@ -1,55 +1,98 @@
-# Blackjack
+# 🃏 Blackjack (21)
 
-Atividade de avaliação do projeto Hack the Favela no módulo de Java realizado pelo <a href="https://altbank.ai/" target="_blank">alt.bank</a>.
+Este projeto é uma aplicação **Fullstack** moderna que simula o clássico jogo de cartas Blackjack (21). Desenvolvido como atividade de avaliação para o projeto **Hack the Favela** (módulo Java) pelo **alt.bank**, ele demonstra a integração entre um backend robusto em Quarkus e um frontend reativo de alta performance em Angular 21.
 
-Este projeto consiste na recriação do famoso jogo BlackJack ou 21 em português.
+---
 
-## Objetivo do jogo
+## 🚀 Tecnologias e Arquitetura
 
-O objetivo do jogo é chegar mais próximo ou igual ao valor 21 com base na soma das cartas do jogador.
+### 🖥️ Frontend
 
-A somatória das cartas será feita conforme tabela abaixo:
+- **Framework:** Angular 21 (Versão estável mais recente)
+- **Estado & Reatividade:** **Signals** (Gerenciamento de estado nativo e granular)
+- **Estilização:** Tailwind CSS (Interface responsiva e Mobile First)
+- **Comunicação:** HttpClient com Interceptors para tratamento global de erros.
 
-| Carta | Valor no jogo|
-|--|--|
-| 2 a 10 | Vale o valor impresso na carta |
-| Valete (J), Dama (Q), Rei (K) |Todas valem 10|
-|Ás (A)|Pode valer 1 ou 11, dependendo do que for melhor para sua mão|
+### ⚙️ Backend
 
-## Participantes do jogo
+- **Linguagem:** Java 21 (LTS)
+- **Framework:** Quarkus 3.34.5
+- **Arquitetura:** Clean Architecture (Separação clara entre Use Cases, Domain Entities e Web Resources)
+- **Documentação:** Swagger UI (OpenAPI)
+- **Gerenciador de Dependências:** Maven
+- **Framework de Testes:** JUnit 5
+- **Testes de API:** RestAssured (utilizado para validar os contratos REST e códigos de status HTTP)
+- **Mocks & Spies:** Mockito (utilizado para mockar o Baralho ou repositórios, garantindo testes unitários determinísticos)
+- **Quarkus Test:** Utilização da anotação @QuarkusTest para gerenciamento do ciclo de vida do CDI durante os testes
 
-O jogo é composto de um dealer (jogador representando a casa) contra até cinco jogadores.
+### 📁 Estrutura de pastas do projeto
 
-## Rodadas
+```
+├── backend/                # Projeto Quarkus (Java 21)
+│   ├── src/main/java       # Código fonte (Clean Arch)
+│   ├── src/test/java       # Testes unitários e de integração
+│   └── pom.xml             # Dependências Maven
+├── frontend/               # Projeto Angular 21 (Zoneless)
+│   ├── src/app             # Componentes, Signals e Layouts
+│   ├── Dockerfile          # Build multi-stage do Angular
+│   └── nginx.conf          # Configuração de roteamento
+└── docker-compose.yaml     # Orquestração do ecossistema
+```
 
-- O jogo inicia com os jogadores fazendo suas apostas.
-- O dealer entrega duas cartas abertas (viradas para cima) para cada jogador e duas cartas para ele mesmo, 
-porém uma carta dele é fechada (virada para baixo). 
-- Se as duas primeiras cartas do jogador somarem 21 pontos, exemplo: Ás e uma carta de valor 10 (10, J, Q ou K), 
-o jogador tem um Blackjack e ganha automaticamente (1.5x o valor apostado), 
-a menos que o dealer também tenha um.
+---
 
-## Opções de Jogo
+## 🛠️ Como Executar o Projeto
 
-Quando for a vez do jogador, ele deve decidir o que fazer com base na sua soma atual:
+A forma mais simples rodar a aplicação completa (Frontend + Backend) é utilizando o **Docker**.
 
-- Pedir (Hit): O jogador pede mais uma carta para aumentar seu total. O jogador pode pedir quantas quiser, mas se passar 
-de 21, o jogador "estoura" (bust) e perde a aposta na hora.
-- Parar (Stand): O jogador encerra sua jogada com o que tem e espera o resultado do dealer.
-- Dobrar (Double Down): O jogador dobra sua aposta inicial e recebe apenas mais uma carta. É arriscado, mas lucrativo se 
-o jogador tiver uma mão forte (como um 11).
-- Dividir (Split): Se o jogador receber duas cartas iguais (ex: dois 8s), pode separá-las em duas mãos diferentes, 
-fazendo uma nova aposta de mesmo valor na segunda mão.
+### Pré-requisitos
 
-## Regras do dealer
+- Docker e Docker Compose instalados.
 
-O dealer não decide como jogar, ele segue regras rígidas da casa:
+### Passo a Passo
 
-- Ele deve pedir cartas até somar pelo menos 17.
-- Se ele somar 17 ou mais, ele deve parar.
+1.  Na raiz do monorepo, execute o comando:
+    ```bash
+    docker-compose up --build
+    ```
+2.  Aguarde a compilação de ambos os projetos (o Docker fará o build do Java e do Angular automaticamente).
+3.  Acesse a aplicação no seu navegador:
+    - **Frontend:** `http://localhost:4200`
+    - **Backend & Swagger:** `http://localhost:8080/swagger-ui`
 
-## O jogador ganha se
+---
 
-- Sua soma final for maior que a do dealer (sem passar de 21).
-- O dealer estourar (passar de 21) e o jogador não.
-- Em caso de empate o dealer é o vencedor.
+## 🛣️ Endpoints da API (REST)
+
+O backend expõe os seguintes endpoints para o controle da partida:
+
+| Método   | Endpoint                   | Descrição                                                |
+| :------- | :------------------------- | :------------------------------------------------------- |
+| `POST`   | `/api/partida/novo-jogo`   | Inicializa uma nova mesa e distribui as cartas iniciais. |
+| `GET`    | `/api/partida`             | Retorna o estado atual da partida e mãos dos jogadores.  |
+| `PATCH`  | `/api/partida/pedir-carta` | O jogador solicita uma nova carta (Hit).                 |
+| `PATCH`  | `/api/partida/parar`       | O jogador encerra sua vez (Stand) e passa para o Dealer. |
+| `DELETE` | `/api/partida`             | Reseta a mesa e limpa a sessão atual.                    |
+
+---
+
+## 🃏 Regras Implementadas nesta Versão
+
+- **Blackjack Automático:** Se o jogador receber 21 pontos nas duas primeiras cartas, a vitória é declarada instantaneamente.
+- **IA do Dealer:** O Dealer segue a regra de parar obrigatoriamente ao pelo menos 17 pontos.
+- **Interface Responsiva:** Design otimizado para dispositivos móveis com cartas proporcionais e botões táteis.
+- **Zoneless Core:** Implementação utilizando as APIs mais modernas do Angular para detecção de mudanças sem Zone.js.
+
+---
+
+## ⚖️ Objetivo e Regras do Jogo
+
+O objetivo é chegar mais próximo ou igual a **21 pontos** sem ultrapassá-lo.
+
+### Pontuação das Cartas
+
+| Carta       | Valor                              |
+| :---------- | :--------------------------------- |
+| **2 a 10**  | Valor face da carta                |
+| **J, Q, K** | 10 pontos                          |
+| **Ás (A)**  | 1 ou 11 (O que for mais favorável) |
