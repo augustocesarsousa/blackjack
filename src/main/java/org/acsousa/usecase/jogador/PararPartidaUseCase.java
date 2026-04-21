@@ -21,7 +21,7 @@ public class PararPartidaUseCase {
         }
 
         turnoDealer.executar(partida);
-
         finalizarPartidaUseCase.executar(partida);
+        partida.getJogador().atualizarAcoesDisponiveis(partida.isEmAndamento());
     }
 }

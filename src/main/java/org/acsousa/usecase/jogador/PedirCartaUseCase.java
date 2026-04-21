@@ -19,9 +19,11 @@ public class PedirCartaUseCase {
 
         Carta carta = partida.getBaralho().pegarCarta();
         partida.getJogador().adicionarCarta(indiceMao, carta);
+        partida.getJogador().atualizarAcoesDisponiveis(partida.isEmAndamento());
 
         if (partida.getJogador().getMaos().get(indiceMao).getPontos() > 21) {
             finalizarPartidaUseCase.executar(partida);
+            partida.getJogador().atualizarAcoesDisponiveis(partida.isEmAndamento());
         }
     }
 }

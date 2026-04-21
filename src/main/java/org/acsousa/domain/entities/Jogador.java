@@ -9,7 +9,7 @@ public class Jogador {
 
     private final String nome;
     private final List<Mao> maos = new ArrayList<>();
-    private final List<AcaoRodada> acoesDiponiveis = new ArrayList<>();
+    private final List<AcaoRodada> acoesDisponiveis = new ArrayList<>();
 
     public Jogador() {
         this.nome = "James Bond";
@@ -20,8 +20,8 @@ public class Jogador {
         return nome;
     }
 
-    public List<AcaoRodada> getAcoesDiponiveis() {
-        return acoesDiponiveis;
+    public List<AcaoRodada> getAcoesDisponiveis() {
+        return acoesDisponiveis;
     }
 
     public List<Mao> getMaos() {
@@ -45,5 +45,33 @@ public class Jogador {
                 this.maos.get(1).adicionarCarta(carta);
             }
         }
+    }
+
+    public void atualizarAcoesDisponiveis(boolean partidaEmAndamento) {
+        this.acoesDisponiveis.clear();
+
+        if (!partidaEmAndamento) {
+            return;
+        }
+
+        Mao mao = this.maos.get(0);
+        int pontos = mao.getPontos();
+
+        if (pontos < 21) {
+            this.acoesDisponiveis.add(AcaoRodada.PEDIR);
+            this.acoesDisponiveis.add(AcaoRodada.PARAR);
+        }
+
+//        if (mao.getCartas().size() == 2 && pontos < 21) {
+//            this.acoesDisponiveis.add(AcaoRodada.DOBRAR);
+//        }
+//
+//        if (mao.getCartas().size() == 2) {
+//            Carta c1 = mao.getCartas().get(0);
+//            Carta c2 = mao.getCartas().get(1);
+//            if (Objects.equals(c1.getValor(), c2.getValor())) {
+//                this.acoesDisponiveis.add(AcaoRodada.DIVIDIR);
+//            }
+//        }
     }
 }

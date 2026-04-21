@@ -14,6 +14,7 @@ public class IniciarPartidaUseCase {
 
         jogador.adicionarCarta(0, baralho.pegarCarta());
         jogador.adicionarCarta(0, baralho.pegarCarta());
+        jogador.atualizarAcoesDisponiveis(true);
 
         dealer.getMao().adicionarCarta(baralho.pegarCarta());
         Carta cartaFechada = baralho.pegarCarta();
