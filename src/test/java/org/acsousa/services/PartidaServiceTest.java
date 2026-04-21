@@ -5,7 +5,6 @@ import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.acsousa.domain.entities.Partida;
 import org.acsousa.repository.PartidaRepository;
-import org.acsousa.services.PartidaService;
 import org.acsousa.usecase.jogador.PararPartidaUseCase;
 import org.acsousa.usecase.jogador.PedirCartaUseCase;
 import org.acsousa.usecase.partida.IniciarPartidaUseCase;

@@ -18,9 +18,6 @@ public class Mao {
 
     public void adicionarCarta(Carta carta) {
         if (carta != null) {
-            if(this.cartas.size() == 1) {
-                carta.virarCarta(false);
-            }
             this.cartas.add(carta);
             this.calcularPontos();
         }
@@ -31,9 +28,12 @@ public class Mao {
         int ases = 0;
 
         for (Carta carta : this.cartas) {
-            this.pontos += carta.getValor();
-            if (carta.getNome().equals("As")) {
-                ases++;
+            if (carta.isAberta()) {
+                this.pontos += carta.getValor();
+
+                if (carta.getNome().equals("As")) {
+                    ases++;
+                }
             }
         }
 

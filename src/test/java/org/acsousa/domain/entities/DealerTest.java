@@ -34,7 +34,7 @@ class DealerTest {
         dealer.getMao().adicionarCarta(primeiraCarta);
         dealer.getMao().adicionarCarta(segundaCarta);
 
-        assertFalse(dealer.getMao().getCartas().get(1).estaAberta());
+        assertFalse(dealer.getMao().getCartas().get(1).isAberta());
     }
 
     @Test

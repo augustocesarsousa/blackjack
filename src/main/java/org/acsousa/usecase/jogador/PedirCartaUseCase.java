@@ -14,7 +14,7 @@ public class PedirCartaUseCase {
 
     public void executar(Partida partida, Integer indiceMao) {
         if (!partida.isEmAndamento()) {
-            return;
+            throw new IllegalStateException("A partida já foi encerrada. Inicie um novo jogo.");
         }
 
         Carta carta = partida.getBaralho().pegarCarta();

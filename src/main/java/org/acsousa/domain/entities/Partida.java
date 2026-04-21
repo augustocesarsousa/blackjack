@@ -1,11 +1,13 @@
 package org.acsousa.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.acsousa.domain.enums.ResultadoPartida;
 
 public class Partida {
 
     private Jogador jogador;
     private Dealer dealer;
+    @JsonIgnore
     private Baralho baralho;
     private boolean emAndamento;
     private ResultadoPartida resultado;

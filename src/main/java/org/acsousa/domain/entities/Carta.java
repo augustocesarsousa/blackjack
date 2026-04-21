@@ -1,5 +1,6 @@
 package org.acsousa.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.acsousa.domain.enums.Naipe;
 
 public class Carta {
@@ -34,12 +35,32 @@ public class Carta {
         return valor;
     }
 
-    public boolean estaAberta() {
+    public boolean isAberta() {
         return this.aberta;
     }
 
     public void virarCarta(boolean opcao) {
         this.aberta = opcao;
+    }
+
+    @JsonProperty("valor")
+    public Integer getValorExibicao() {
+        return aberta ? valor : null;
+    }
+
+    @JsonProperty("nome")
+    public String getNomeExibicao() {
+        return aberta ? nome : "Oculta";
+    }
+
+    @JsonProperty("simbulo")
+    public String getSimbuloExibicao() {
+        return aberta ? simbulo : "?";
+    }
+
+    @JsonProperty("naipe")
+    public Naipe getNaipeExibicao() {
+        return aberta ? naipe : null;
     }
 
     @Override

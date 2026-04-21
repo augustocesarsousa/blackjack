@@ -32,23 +32,15 @@ public class PartidaResource {
     @PATCH
     @Path("/pedir-carta")
     public Response pedirCarta() {
-        try {
-            Partida partida = partidaService.pedirCarta();
-            return Response.ok(partida).build();
-        } catch (IllegalStateException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        }
+        Partida partida = partidaService.pedirCarta();
+        return Response.ok(partida).build();
     }
 
     @PATCH
     @Path("/parar")
     public Response pararPartida() {
-        try {
-            Partida partida = partidaService.pararPartida();
-            return Response.ok(partida).build();
-        } catch (IllegalStateException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        }
+        Partida partida = partidaService.pararPartida();
+        return Response.ok(partida).build();
     }
 
     @DELETE

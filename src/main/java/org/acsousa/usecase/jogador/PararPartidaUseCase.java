@@ -17,7 +17,7 @@ public class PararPartidaUseCase {
 
     public void executar(Partida partida) {
         if (!partida.isEmAndamento()) {
-            return;
+            throw new IllegalStateException("A partida já foi encerrada. Inicie um novo jogo.");
         }
 
         turnoDealer.executar(partida);

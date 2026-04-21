@@ -23,8 +23,8 @@ class IniciarPartidaUseCaseTest {
         assertTrue(partida.isEmAndamento());
         assertEquals(2, partida.getJogador().getMaos().get(0).getCartas().size());
         assertEquals(2, partida.getDealer().getMao().getCartas().size());
-        assertTrue(partida.getDealer().getMao().getCartas().get(0).estaAberta());
-        assertFalse(partida.getDealer().getMao().getCartas().get(1).estaAberta());
+        assertTrue(partida.getDealer().getMao().getCartas().get(0).isAberta());
+        assertFalse(partida.getDealer().getMao().getCartas().get(1).isAberta());
         assertEquals(48, partida.getBaralho().qtdCartas());
     }
 }
