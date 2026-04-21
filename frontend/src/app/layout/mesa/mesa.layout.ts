@@ -29,4 +29,19 @@ export class MesaLayout {
   podeAcao(acao: AcaoRodada): boolean {
     return this.partida()?.jogador.acoesDisponiveis.includes(acao) ?? false;
   }
+
+  getResultadoFormatado() {
+    const resultado = this.partida()?.resultado;
+    if (!resultado) return { texto: '', classe: '' };
+
+    const mapas: Record<string, { texto: string; classe: string }> = {
+      JOGADOR_VENCEU: { texto: 'Você venceu! 🎉', classe: 'text-yellow-400' },
+      DEALER_VENCEU: { texto: 'Dealer venceu! 😱', classe: 'text-red-500' },
+      EMPATE: { texto: 'Empate! 🤝', classe: 'text-blue-400' },
+      ESTOUROU: { texto: 'Estourou! 💥', classe: 'text-orange-600' },
+      BLACKJACK: { texto: 'BLACKJACK! 🃏🔥', classe: 'text-yellow-300 animate-pulse' },
+    };
+
+    return mapas[resultado] || { texto: resultado, classe: 'text-white' };
+  }
 }

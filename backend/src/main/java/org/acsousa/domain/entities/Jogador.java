@@ -62,6 +62,10 @@ public class Jogador {
             this.acoesDisponiveis.add(AcaoRodada.PARAR);
         }
 
+        if (pontos == 21) {
+            this.acoesDisponiveis.add(AcaoRodada.PARAR);
+        }
+
 //        if (mao.getCartas().size() == 2 && pontos < 21) {
 //            this.acoesDisponiveis.add(AcaoRodada.DOBRAR);
 //        }

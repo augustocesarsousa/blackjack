@@ -26,9 +26,6 @@ public class PartidaService {
     PararPartidaUseCase pararPartidaUseCase;
 
     public Partida novaPartida() {
-        if(repository.obterPartida().isPresent()) {
-            throw new IllegalStateException("Já existe uma partida em andamento.");
-        }
         Partida partida = iniciarPartidaUseCase.executar();
         repository.salvar(partida);
         return partida;

@@ -26,7 +26,7 @@ public class PartidaResource {
     public Response obterPartidaAtual() {
         return partidaService.obterPartidaAtual()
                 .map(partida -> Response.ok(partida).build())
-                .orElse(Response.status(Response.Status.NOT_FOUND).build());
+                .orElse(Response.status(Response.Status.NO_CONTENT).build());
     }
 
     @PATCH

@@ -1,25 +1,37 @@
 <div
   class="flex flex-col justify-between min-h-screen p-4 overflow-hidden bg-[radial-gradient(circle_at_center,#2d5a43_0%,#1a4a32_100%)]"
 >
-  <header class="flex justify-between items-center py-2 border-b border-white/10">
-    <h1 class="text-gold-accent font-black italic tracking-tighter text-xl uppercase">
-      Blackjack v21
-    </h1>
-    <div class="bg-black/20 px-3 py-1 rounded-full border border-white/5">
-      <span class="text-[10px] text-gray-300 uppercase">Estado:</span>
-      <span
-        class="text-[10px] font-bold ml-1 uppercase"
-        [class.text-green-400]="partida()?.emAndamento"
-        [class.text-red-400]="!partida()?.emAndamento"
+  <header
+    class="flex justify-between items-center py-4 border-b border-white/5 bg-black/10 -mx-4 px-4 mb-2"
+  >
+    <div class="flex flex-col">
+      <h1
+        class="text-2xl font-black italic tracking-tighter leading-none bg-linear-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
       >
-        {{ partida()?.emAndamento ? 'Ativo' : 'Finalizado' }}
+        BLACKJACK
+      </h1>
+      <span class="text-[8px] uppercase tracking-[0.3em] text-yellow-600 font-medium"
+        >Cassino alt.bank</span
+      >
+    </div>
+
+    <div
+      class="flex items-center gap-2 bg-slate-900/50 px-3 py-1.5 rounded-full border border-white/10 shadow-inner"
+    >
+      <div
+        class="w-2 h-2 rounded-full animate-pulse"
+        [class.bg-green-500]="partida()?.emAndamento"
+        [class.bg-red-500]="!partida()?.emAndamento"
+      ></div>
+      <span class="text-[10px] font-bold text-white tracking-wider uppercase">
+        {{ partida()?.emAndamento ? 'Live' : 'Over' }}
       </span>
     </div>
   </header>
 
   <section class="flex flex-col items-center gap-4 mt-4">
     <div class="relative flex flex-col items-center">
-      <span class="text-[10px] uppercase tracking-widest text-white/50 mb-2">Dealer</span>
+      <span class="text-[10px] uppercase font-bold tracking-widest text-white/50 mb-2">Dealer</span>
 
       <div class="flex -space-x-8 md:-space-x-12 min-h-30 items-center">
         @for (carta of partida()?.dealer?.mao?.cartas; track $index) {
@@ -36,12 +48,19 @@
   </section>
 
   @if (partida()?.resultado) {
-    <div class="flex flex-col items-center justify-center animate-bounce py-4">
-      <span
-        class="text-gold-accent font-black text-4xl drop-shadow-2xl uppercase tracking-tighter text-center"
-      >
-        {{ partida()?.resultado }}
-      </span>
+    <div
+      class="flex flex-col items-center justify-center py-2 animate-in fade-in zoom-in duration-500"
+    >
+      <div class="relative max-w-[90vw]">
+        <div class="absolute inset-0 blur-3xl opacity-20 bg-white"></div>
+
+        <h2
+          [class]="getResultadoFormatado().classe"
+          class="relative font-black italic tracking-tighter uppercase drop-shadow-2xl text-center leading-[0.85] text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          {{ getResultadoFormatado().texto }}
+        </h2>
+      </div>
     </div>
   }
 
@@ -62,7 +81,7 @@
         }
       </div>
 
-      <span class="text-[10px] uppercase tracking-widest text-white/50 mt-4">{{
+      <span class="text-[10px] uppercase font-bold tracking-widest text-white/50 mt-4">{{
         partida()?.jogador?.nome
       }}</span>
     </div>
@@ -76,22 +95,26 @@
         <button
           (click)="onPedir()"
           [disabled]="!podeAcao('PEDIR')"
-          class="py-4 rounded-xl font-black text-lg shadow-lg transition-all duration-200 uppercase tracking-tight active:scale-95 disabled:opacity-30 disabled:active:scale-100 bg-white text-casino-dark"
+          class="group relative flex items-center justify-center gap-2 py-4 rounded-xl font-black text-lg shadow-lg transition-all duration-200 uppercase tracking-tight active:scale-95 disabled:opacity-30 disabled:active:scale-100 bg-blue-500 hover:bg-blue-500 text-white border-b-4 border-blue-700 active:border-b-0"
         >
-          Pedir
+          <span class="text-xl group-active:rotate-12 transition-transform">➕</span>
+          <span>Pedir</span>
         </button>
+
         <button
           (click)="onParar()"
           [disabled]="!podeAcao('PARAR')"
-          class="py-4 rounded-xl font-black text-lg shadow-lg transition-all duration-200 uppercase tracking-tight active:scale-95 disabled:opacity-30 disabled:active:scale-100 bg-gold-accent text-white"
+          class="group relative flex items-center justify-center gap-2 py-4 rounded-xl font-black text-lg shadow-lg transition-all duration-200 uppercase tracking-tight active:scale-95 disabled:opacity-30 disabled:active:scale-100 bg-red-500 hover:bg-red-500 text-white border-b-4 border-red-700 active:border-b-0"
         >
-          Parar
+          <span class="text-xl group-active:scale-110 transition-transform">✋</span>
+          <span>Parar</span>
         </button>
       } @else {
         <button
           (click)="onNovoJogo()"
-          class="col-span-2 py-4 bg-white text-casino-dark font-black rounded-xl active:scale-95 transition-all duration-200 shadow-xl uppercase tracking-widest"
+          class="col-span-2 py-4 bg-linear-to-r from-yellow-500 to-yellow-600 text-slate-900 font-black rounded-xl active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(234,179,8,0.4)] uppercase tracking-widest flex items-center justify-center gap-2"
         >
+          <span>🃏</span>
           Nova Partida
         </button>
       }
