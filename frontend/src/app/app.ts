@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MesaLayout } from './layout/mesa/mesa.layout';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MesaLayout],
   template: `
-    <p>Frontend iniciado</p>
+    <app-mesa />
     <router-outlet />
   `,
 })

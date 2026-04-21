@@ -1,0 +1,28 @@
+<div class="card-container" [class.is-flipped]="!carta().aberta">
+  <div class="card-inner">
+    <div class="card-front" [class.text-red-600]="isRed()" [class.text-slate-900]="!isRed()">
+      <div class="flex justify-between items-start w-full">
+        <div class="flex flex-col items-center">
+          <span class="text-lg md:text-2xl font-black leading-none">{{ carta().simbulo }}</span>
+          <span class="text-xs md:text-sm">{{ getIcon() }}</span>
+        </div>
+      </div>
+
+      <div class="flex-1 flex items-center justify-center text-3xl md:text-5xl">
+        {{ getIcon() }}
+      </div>
+
+      <div class="flex justify-between items-end w-full rotate-180">
+        <div class="flex flex-col items-center">
+          <span class="text-lg md:text-2xl font-black leading-none">{{ carta().simbulo }}</span>
+          <span class="text-xs md:text-sm">{{ getIcon() }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <span class="text-white/20 font-black italic text-xl md:text-2xl z-10">BJ</span>
+    </div>
+  </div>
+</div>
