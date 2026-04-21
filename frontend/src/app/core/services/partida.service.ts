@@ -26,4 +26,8 @@ export class PartidaService {
   parar(): Observable<Partida> {
     return this.http.patch<Partida>(`${this.API_URL}/parar`, {});
   }
+
+  resetarPartida(): Observable<void> {
+    return this.http.delete<void>(this.API_URL);
+  }
 }

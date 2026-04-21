@@ -36,4 +36,13 @@ export class BlackjackComponent implements OnInit {
   handleParar(): void {
     this.partidaService.parar().subscribe((p) => this.partida.set(p));
   }
+
+  handleResetar(): void {
+    this.partidaService.resetarPartida().subscribe({
+      next: () => {
+        this.partida.set(null);
+      },
+      error: (err) => console.error('Erro ao resetar a mesa', err),
+    });
+  }
 }

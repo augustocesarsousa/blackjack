@@ -15,6 +15,7 @@ export class MesaLayout {
   pedir = output<void>();
   parar = output<void>();
   novoJogo = output<void>();
+  resetar = output<void>();
 
   onPedir() {
     this.pedir.emit();
@@ -24,6 +25,10 @@ export class MesaLayout {
   }
   onNovoJogo() {
     this.novoJogo.emit();
+  }
+
+  onResetar() {
+    this.resetar.emit();
   }
 
   podeAcao(acao: AcaoRodada): boolean {
