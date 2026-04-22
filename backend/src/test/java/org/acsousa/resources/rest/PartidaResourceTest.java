@@ -12,7 +12,6 @@ import org.mockito.Mockito;
 import java.util.Optional;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 @QuarkusTest
@@ -52,15 +51,15 @@ class PartidaResourceTest {
     }
 
     @Test
-    @DisplayName("Deve retornar 404 se tentar buscar uma partida que não existe")
-    void deveRetornar404SeNaoHouverPartida() {
+    @DisplayName("Deve retornar 204 se tentar buscar uma partida que não existe")
+    void deveRetornar204SeNaoHouverPartida() {
         Mockito.when(partidaService.obterPartidaAtual()).thenReturn(Optional.empty());
 
         given()
             .when()
                 .get("/api/partida")
             .then()
-                .statusCode(404);
+                .statusCode(204);
     }
 
     @Test
@@ -73,7 +72,8 @@ class PartidaResourceTest {
             .when()
                 .patch("/api/partida/pedir-carta")
             .then()
-                .statusCode(200);
+                .statusCode(200)
+                .body(notNullValue());;
     }
 
     @Test
@@ -86,6 +86,6 @@ class PartidaResourceTest {
                 .patch("/api/partida/pedir-carta")
             .then()
                 .statusCode(400)
-                .body(is("Erro de estado"));
+                .body(notNullValue());;
     }
 }

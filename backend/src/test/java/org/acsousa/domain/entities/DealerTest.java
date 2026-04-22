@@ -30,6 +30,7 @@ class DealerTest {
         Dealer dealer = new Dealer();
         Carta primeiraCarta = new Carta(Naipe.ESPADAS, "Valete", "J", 10);
         Carta segundaCarta = new Carta(Naipe.OUROS, "Dois", "2", 2);
+        segundaCarta.virarCarta(false);
 
         dealer.getMao().adicionarCarta(primeiraCarta);
         dealer.getMao().adicionarCarta(segundaCarta);
@@ -38,7 +39,7 @@ class DealerTest {
     }
 
     @Test
-    @DisplayName("Verifica de o Dealer está sendo criado corretamente")
+    @DisplayName("Verifica se os pontos do Dealer estão sendo calculados corretamente")
     void deveCalcularPontosCorretamente() {
         Dealer dealer = new Dealer();
         Carta primeiraCarta = new Carta(Naipe.ESPADAS, "Valete", "J", 10);
@@ -66,7 +67,7 @@ class DealerTest {
     }
 
     @Test
-    @DisplayName("Calcula os pontos com o As valendo 1")
+    @DisplayName("Calcula os pontos com o As valendo 11")
     void deveCalcularPontosComAsValendoOnzeCorretamente() {
         Dealer dealer = new Dealer();
         Carta primeiraCarta = new Carta(Naipe.ESPADAS, "Valete", "J", 10);

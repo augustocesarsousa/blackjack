@@ -70,11 +70,11 @@ class PartidaServiceTest {
     @Test
     @DisplayName("pararPartida deve chamar o UseCase de parar")
     void deveExecutarPararPartida() {
-        Partida partidaFake = new Partida();
-        Mockito.when(repository.obterPartida()).thenReturn(Optional.of(partidaFake));
+        Partida partidaMock = new Partida();
+        Mockito.when(repository.obterPartida()).thenReturn(Optional.of(partidaMock));
 
         service.pararPartida();
 
-        Mockito.verify(pararPartidaUseCase, Mockito.times(1)).executar(partidaFake);
+        Mockito.verify(pararPartidaUseCase, Mockito.times(1)).executar(partidaMock);
     }
 }

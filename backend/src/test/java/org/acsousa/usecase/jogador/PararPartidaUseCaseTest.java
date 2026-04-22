@@ -45,7 +45,6 @@ class PararPartidaUseCaseTest {
         pararPartidaUseCase.executar(partida);
 
         assertFalse(partida.isEmAndamento());
-        assertTrue(partida.getDealer().getMao().getPontos() >= 17);
         assertEquals(18, partida.getDealer().getMao().getPontos());
         assertEquals(ResultadoPartida.JOGADOR_VENCEU, partida.getResultado());
     }
@@ -70,6 +69,6 @@ class PararPartidaUseCaseTest {
         pararPartidaUseCase.executar(partida);
 
         assertEquals(ResultadoPartida.JOGADOR_VENCEU, partida.getResultado());
-        assertTrue(partida.getDealer().getMao().getPontos() > 21);
+        assertEquals(25, partida.getDealer().getMao().getPontos());
     }
 }

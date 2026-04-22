@@ -6,7 +6,6 @@ import org.acsousa.domain.entities.Baralho;
 import org.acsousa.domain.entities.Dealer;
 import org.acsousa.domain.entities.Jogador;
 import org.acsousa.domain.entities.Partida;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +18,6 @@ class PartidaRepositoryTest {
 
     @Inject
     PartidaRepository repository;
-
-    @BeforeEach
-    void setUp() {
-        repository.resetar();
-    }
 
     @Test
     @DisplayName("Deve salvar e recuperar a partida atual")
