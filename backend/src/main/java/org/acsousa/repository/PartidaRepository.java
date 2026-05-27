@@ -19,9 +19,6 @@ public class PartidaRepository {
     }
 
     public void resetar() {
-        if (!temPartidaAtiva()) {
-            throw new IllegalStateException("Não existe uma partida em andamento. Inicie um novo jogo primeiro.");
-        }
         this.partidaAtual = null;
     }
 
