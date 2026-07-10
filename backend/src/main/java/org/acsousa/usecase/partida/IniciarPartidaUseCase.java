@@ -33,7 +33,7 @@ public class IniciarPartidaUseCase {
         return partida;
     }
 
-    private void verificaBlackjackInicial(Partida partida) {
+    void verificaBlackjackInicial(Partida partida) {
         int pontosJogador = partida.getJogador().getMaos().get(0).getPontos();
 
         if (pontosJogador == 21) {
