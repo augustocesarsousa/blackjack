@@ -28,12 +28,10 @@ public class Mao {
         int ases = 0;
 
         for (Carta carta : this.cartas) {
-            if (carta.isAberta()) {
-                this.pontos += carta.getValor();
+            this.pontos += carta.getValor();
 
-                if (carta.getNome().equals("As")) {
-                    ases++;
-                }
+            if (carta.getNome().equals("As")) {
+                ases++;
             }
         }
 
