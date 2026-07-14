@@ -1,7 +1,7 @@
 export interface Carta {
   naipe: 'COPAS' | 'OUROS' | 'ESPADAS' | 'PAUS';
   nome: string;
-  simbulo: string;
+  simbolo: string;
   valor: number;
   aberta: boolean;
 }
