@@ -7,14 +7,14 @@ public class Carta {
 
     private final Naipe naipe;
     private final String nome;
-    private final String simbulo;
+    private final String simbolo;
     private final Integer valor;
     private boolean aberta;
 
-    public Carta(Naipe naipe, String nome, String simbulo, Integer valor) {
+    public Carta(Naipe naipe, String nome, String simbolo, Integer valor) {
         this.naipe = naipe;
         this.nome = nome;
-        this.simbulo = simbulo;
+        this.simbolo = simbolo;
         this.valor = valor;
         this.aberta = true;
     }
@@ -27,8 +27,8 @@ public class Carta {
         return nome;
     }
 
-    public String getSimbulo() {
-        return simbulo;
+    public String getSimbolo() {
+        return simbolo;
     }
 
     public Integer getValor() {
@@ -53,9 +53,9 @@ public class Carta {
         return aberta ? nome : "Oculta";
     }
 
-    @JsonProperty("simbulo")
-    public String getSimbuloExibicao() {
-        return aberta ? simbulo : "?";
+    @JsonProperty("simbolo")
+    public String getSimboloExibicao() {
+        return aberta ? simbolo : "?";
     }
 
     @JsonProperty("naipe")
