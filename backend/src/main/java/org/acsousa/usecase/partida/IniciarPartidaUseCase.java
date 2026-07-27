@@ -39,6 +39,9 @@ public class IniciarPartidaUseCase {
         if (pontosJogador == 21) {
             partida.setEmAndamento(false);
 
+            partida.getDealer().getMao().getCartas().get(1).virarCarta(true);
+            partida.getDealer().getMao().calcularPontos();
+
             int pontosDealer = partida.getDealer().getMao().getPontos();
 
             if (pontosDealer == 21) {
@@ -48,8 +51,6 @@ public class IniciarPartidaUseCase {
             }
 
             partida.getJogador().getAcoesDisponiveis().clear();
-
-            partida.getDealer().getMao().getCartas().forEach(c -> c.virarCarta(true));
         } else {
             partida.getJogador().atualizarAcoesDisponiveis(true);
         }
