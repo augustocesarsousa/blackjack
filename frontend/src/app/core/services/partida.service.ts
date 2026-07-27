@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Partida } from '../../shared/models/partida.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Partida } from '../../shared/models/partida.interface';
 export class PartidaService {
   private readonly http = inject(HttpClient);
 
-  private readonly API_URL = 'http://localhost:8080/api/partida';
+  private readonly API_URL = environment.apiUrl;
 
   novoJogo(): Observable<Partida> {
     return this.http.post<Partida>(`${this.API_URL}/novo-jogo`, {});
